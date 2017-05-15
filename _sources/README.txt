@@ -220,7 +220,7 @@ In [2]:
             self.noise = noise
             
             
-    rover = dog('Rover', 'bark')
+    rover = dog('Rover', 'ruff')
     spot = dog('Spot', 'woof')
 
 .. raw:: html
@@ -445,7 +445,7 @@ In [4]:
 
 ::
 
-    Rover says: bark 
+    Rover says: ruff 
     Spot says: woof woof 
 
 .. raw:: html
