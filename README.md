@@ -22,49 +22,431 @@ def our_function(self, our_variable):
 
 and that will add the method ``our_function`` to ``our_class``, whether
 ``our_class`` is a class, or an object with a class type.
-``` {.sourceCode .python}
-import jdc.jdc as jdc
-```
 
-``` {.sourceCode .python}
-class func(object):
-    def __init__(self, A):
-        self.A = A
+<div class="cell border-box-sizing text_cell rendered">
 
-one = func(1.0)
-two = func(2.0)
-```
+<div class="prompt input_prompt">
 
-``` {.sourceCode .python}
-%%add_to func
-def y(self, x):
-    print self.A * x**2
-```
+</div>
 
-``` {.sourceCode .python}
-one.y(5.0)
-```
+<div class="inner_cell">
 
-``` {.sourceCode .python}
-%%add_to two
-def z(self, x):
-    print self.A * x**3
-```
+<div class="text_cell_render border-box-sizing rendered_html">
 
-``` {.sourceCode .python}
-two.y(5.0)
-```
+Example[¶](#Example){.anchor-link} {#Example}
+----------------------------------
 
-``` {.sourceCode .python}
-two.z(5.0)
-```
+</div>
 
-``` {.sourceCode .python}
-try: 
-    one.z(5.0)
-except AttributeError:
-    print "See, it doesn't have it!"
-```
+</div>
+
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+
+<div class="prompt input_prompt">
+
+</div>
+
+<div class="inner_cell">
+
+<div class="text_cell_render border-box-sizing rendered_html">
+
+Below is an example on how to use `jdc`. First we have to import the
+class:
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="input">
+
+<div class="prompt input_prompt">
+
+In \[1\]:
+
+</div>
+
+<div class="inner_cell">
+
+<div class="input_area">
+
+<div class="highlight hl-ipython2">
+
+    import jdc.jdc as jdc
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+
+<div class="prompt input_prompt">
+
+</div>
+
+<div class="inner_cell">
+
+<div class="text_cell_render border-box-sizing rendered_html">
+
+Then, we have to make a dummy class:
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="input">
+
+<div class="prompt input_prompt">
+
+In \[2\]:
+
+</div>
+
+<div class="inner_cell">
+
+<div class="input_area">
+
+<div class="highlight hl-ipython2">
+
+    class func(object):
+        def __init__(self, A):
+            self.A = A
+            
+    one = func(1.0)
+    two = func(2.0)
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+
+<div class="prompt input_prompt">
+
+</div>
+
+<div class="inner_cell">
+
+<div class="text_cell_render border-box-sizing rendered_html">
+
+Then, we want to add afunction to that class:
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="input">
+
+<div class="prompt input_prompt">
+
+In \[3\]:
+
+</div>
+
+<div class="inner_cell">
+
+<div class="input_area">
+
+<div class="highlight hl-ipython2">
+
+    %%add_to func
+    def y(self, x):
+        print self.A * x**2
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+
+<div class="prompt input_prompt">
+
+</div>
+
+<div class="inner_cell">
+
+<div class="text_cell_render border-box-sizing rendered_html">
+
+And now we can access that function from any method of that class.
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="input">
+
+<div class="prompt input_prompt">
+
+In \[4\]:
+
+</div>
+
+<div class="inner_cell">
+
+<div class="input_area">
+
+<div class="highlight hl-ipython2">
+
+    one.y(5.0)
+    two.y(10.0)
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="output_wrapper">
+
+<div class="output">
+
+<div class="output_area">
+
+<div class="prompt">
+
+</div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+
+    25.0
+    200.0
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+
+<div class="prompt input_prompt">
+
+</div>
+
+<div class="inner_cell">
+
+<div class="text_cell_render border-box-sizing rendered_html">
+
+If we want to add a function to only one object of that class, we can do
+that, as well:
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="input">
+
+<div class="prompt input_prompt">
+
+In \[5\]:
+
+</div>
+
+<div class="inner_cell">
+
+<div class="input_area">
+
+<div class="highlight hl-ipython2">
+
+    %%add_to two
+    def z(self, x):
+        print self.A * x**3
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="input">
+
+<div class="prompt input_prompt">
+
+In \[6\]:
+
+</div>
+
+<div class="inner_cell">
+
+<div class="input_area">
+
+<div class="highlight hl-ipython2">
+
+    two.z(5.0)
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="output_wrapper">
+
+<div class="output">
+
+<div class="output_area">
+
+<div class="prompt">
+
+</div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+
+    250.0
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+
+<div class="prompt input_prompt">
+
+</div>
+
+<div class="inner_cell">
+
+<div class="text_cell_render border-box-sizing rendered_html">
+
+Note that the function added to a class object is only available to that
+object, not all objects of that class:
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="input">
+
+<div class="prompt input_prompt">
+
+In \[7\]:
+
+</div>
+
+<div class="inner_cell">
+
+<div class="input_area">
+
+<div class="highlight hl-ipython2">
+
+    try: 
+        one.z(5.0)
+    except AttributeError:
+        print "See, it doesn't have it!"
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="output_wrapper">
+
+<div class="output">
+
+<div class="output_area">
+
+<div class="prompt">
+
+</div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+
+    See, it doesn't have it!
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+
+<div class="prompt input_prompt">
+
+</div>
+
+<div class="inner_cell">
+
+<div class="text_cell_render border-box-sizing rendered_html">
+
+And that's it.
+
+</div>
+
+</div>
+
+</div>
+
 ## Installation
 
 Right now, installation is pretty manual, but I'll be working on this.  The easiest way to install would be to make your own utilities directory

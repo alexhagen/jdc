@@ -1,3 +1,17 @@
+_build/
+docs/_build/*
+README.rst
+test_jdc.rst
+test_jdc.html
+EXAMPLE.html
+EXAMPLE.md
+
+# Mac Files
+.DS_Store
+
+# Ignore the build of the documentation
+docs/_build/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

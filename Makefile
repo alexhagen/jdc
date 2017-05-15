@@ -1,16 +1,18 @@
 all: readme docs publish
 
 readme: FORCE
-	jupyter nbconvert tests/test_jdc.ipynb --to rst --execute; \
-	pandoc tests/test_jdc.rst -o EXAMPLE.md; \
+	jupyter nbconvert tests/test_jdc.ipynb --to html --template basic --execute; \
+	pandoc tests/test_jdc.html -o EXAMPLE.md; \
 	cat INTRO.md > README.md; \
+	echo "" >> README.md; \
 	cat EXAMPLE.md >> README.md; \
+	echo "" >> README.md; \
 	cat INSTALL.md >> README.md
 
 docs: FORCE
 	pandoc README.md -o docs/source/README.rst; \
-	jupyter nbconvert tests/test_jdc.ipynb --to rst --execute; \
-	mv tests/test_jdc.rst docs/source/test.rst; \
+	# jupyter nbconvert tests/test_jdc.ipynb --to rst --execute; \
+	# mv tests/test_jdc.rst docs/source/test.rst; \
 	cd docs/; \
 	#sphinx-apidoc -e -f -M -o ./ ../; \
 	make html
