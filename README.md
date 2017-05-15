@@ -34,7 +34,7 @@ and that will add the method ``our_function`` to ``our_class``, whether
 <div class="text_cell_render border-box-sizing rendered_html">
 
 Example[¶](#Example){.anchor-link} {#Example}
-----------------------------------
+==================================
 
 </div>
 
@@ -129,7 +129,7 @@ In \[2\]:
             self.noise = noise
             
             
-    rover = dog('Rover', 'bark')
+    rover = dog('Rover', 'ruff')
     spot = dog('Spot', 'woof')
 
 </div>
@@ -248,7 +248,7 @@ In \[4\]:
 
 <div class="output_subarea output_stream output_stdout output_text">
 
-    Rover says: bark 
+    Rover says: ruff 
     Spot says: woof woof 
 
 </div>
