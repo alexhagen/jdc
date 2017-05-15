@@ -24,49 +24,808 @@ allows you to do is to add a cell and define
 and that will add the method ``our_function`` to ``our_class``, whether
 ``our_class`` is a class, or an object with a class type.
 
-.. code:: python
+.. raw:: html
+
+   <div class="cell border-box-sizing text_cell rendered">
+
+.. raw:: html
+
+   <div class="prompt input_prompt">
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="inner_cell">
+
+.. raw:: html
+
+   <div class="text_cell_render border-box-sizing rendered_html">
+
+.. rubric:: Example\ `¶ <#Example>`__
+   :name: Example
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="cell border-box-sizing text_cell rendered">
+
+.. raw:: html
+
+   <div class="prompt input_prompt">
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="inner_cell">
+
+.. raw:: html
+
+   <div class="text_cell_render border-box-sizing rendered_html">
+
+Below is an example on how to use ``jdc``. First we have to import the
+class:
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="cell border-box-sizing code_cell rendered">
+
+.. raw:: html
+
+   <div class="input">
+
+.. raw:: html
+
+   <div class="prompt input_prompt">
+
+In [1]:
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="inner_cell">
+
+.. raw:: html
+
+   <div class="input_area">
+
+.. raw:: html
+
+   <div class="highlight hl-ipython2">
+
+::
 
     import jdc.jdc as jdc
 
-.. code:: python
+.. raw:: html
 
-    class func(object):
-        def __init__(self, A):
-            self.A = A
+   </div>
 
-    one = func(1.0)
-    two = func(2.0)
+.. raw:: html
 
-.. code:: python
+   </div>
 
-    %%add_to func
-    def y(self, x):
-        print self.A * x**2
+.. raw:: html
 
-.. code:: python
+   </div>
 
-    one.y(5.0)
+.. raw:: html
 
-.. code:: python
+   </div>
 
-    %%add_to two
-    def z(self, x):
-        print self.A * x**3
+.. raw:: html
 
-.. code:: python
+   </div>
 
-    two.y(5.0)
+.. raw:: html
 
-.. code:: python
+   <div class="cell border-box-sizing text_cell rendered">
 
-    two.z(5.0)
+.. raw:: html
 
-.. code:: python
+   <div class="prompt input_prompt">
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="inner_cell">
+
+.. raw:: html
+
+   <div class="text_cell_render border-box-sizing rendered_html">
+
+Then, we have to make a dummy class:
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="cell border-box-sizing code_cell rendered">
+
+.. raw:: html
+
+   <div class="input">
+
+.. raw:: html
+
+   <div class="prompt input_prompt">
+
+In [2]:
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="inner_cell">
+
+.. raw:: html
+
+   <div class="input_area">
+
+.. raw:: html
+
+   <div class="highlight hl-ipython2">
+
+::
+
+    class dog(object):
+        def __init__(self, name, noise):
+            self.name = name
+            self.noise = noise
+            
+            
+    rover = dog('Rover', 'bark')
+    spot = dog('Spot', 'woof')
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="cell border-box-sizing text_cell rendered">
+
+.. raw:: html
+
+   <div class="prompt input_prompt">
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="inner_cell">
+
+.. raw:: html
+
+   <div class="text_cell_render border-box-sizing rendered_html">
+
+Then, we want to add a function to that class:
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="cell border-box-sizing code_cell rendered">
+
+.. raw:: html
+
+   <div class="input">
+
+.. raw:: html
+
+   <div class="prompt input_prompt">
+
+In [3]:
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="inner_cell">
+
+.. raw:: html
+
+   <div class="input_area">
+
+.. raw:: html
+
+   <div class="highlight hl-ipython2">
+
+::
+
+    %%add_to dog
+    def bark(self, times=1):
+        saying = ('%s ' % self.noise) * times
+        print "%s says: %s" % (self.name, saying)
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="cell border-box-sizing text_cell rendered">
+
+.. raw:: html
+
+   <div class="prompt input_prompt">
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="inner_cell">
+
+.. raw:: html
+
+   <div class="text_cell_render border-box-sizing rendered_html">
+
+And now we can access that function from any method of that class.
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="cell border-box-sizing code_cell rendered">
+
+.. raw:: html
+
+   <div class="input">
+
+.. raw:: html
+
+   <div class="prompt input_prompt">
+
+In [4]:
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="inner_cell">
+
+.. raw:: html
+
+   <div class="input_area">
+
+.. raw:: html
+
+   <div class="highlight hl-ipython2">
+
+::
+
+    rover.bark(1)
+    spot.bark(2)
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="output_wrapper">
+
+.. raw:: html
+
+   <div class="output">
+
+.. raw:: html
+
+   <div class="output_area">
+
+.. raw:: html
+
+   <div class="prompt">
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="output_subarea output_stream output_stdout output_text">
+
+::
+
+    Rover says: bark 
+    Spot says: woof woof 
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="cell border-box-sizing text_cell rendered">
+
+.. raw:: html
+
+   <div class="prompt input_prompt">
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="inner_cell">
+
+.. raw:: html
+
+   <div class="text_cell_render border-box-sizing rendered_html">
+
+If we want to add a function to only one object of that class, we can do
+that, as well:
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="cell border-box-sizing code_cell rendered">
+
+.. raw:: html
+
+   <div class="input">
+
+.. raw:: html
+
+   <div class="prompt input_prompt">
+
+In [5]:
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="inner_cell">
+
+.. raw:: html
+
+   <div class="input_area">
+
+.. raw:: html
+
+   <div class="highlight hl-ipython2">
+
+::
+
+    %%add_to spot
+    def sit(self):
+        print '%s is now sitting' % self.name
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="cell border-box-sizing code_cell rendered">
+
+.. raw:: html
+
+   <div class="input">
+
+.. raw:: html
+
+   <div class="prompt input_prompt">
+
+In [6]:
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="inner_cell">
+
+.. raw:: html
+
+   <div class="input_area">
+
+.. raw:: html
+
+   <div class="highlight hl-ipython2">
+
+::
+
+    spot.sit()
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="output_wrapper">
+
+.. raw:: html
+
+   <div class="output">
+
+.. raw:: html
+
+   <div class="output_area">
+
+.. raw:: html
+
+   <div class="prompt">
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="output_subarea output_stream output_stdout output_text">
+
+::
+
+    Spot is now sitting
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="cell border-box-sizing text_cell rendered">
+
+.. raw:: html
+
+   <div class="prompt input_prompt">
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="inner_cell">
+
+.. raw:: html
+
+   <div class="text_cell_render border-box-sizing rendered_html">
+
+Note that the function added to a class object is only available to that
+object, not all objects of that class:
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="cell border-box-sizing code_cell rendered">
+
+.. raw:: html
+
+   <div class="input">
+
+.. raw:: html
+
+   <div class="prompt input_prompt">
+
+In [7]:
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="inner_cell">
+
+.. raw:: html
+
+   <div class="input_area">
+
+.. raw:: html
+
+   <div class="highlight hl-ipython2">
+
+::
 
     try: 
-        one.z(5.0)
+        rover.sit()
     except AttributeError:
-        print "See, it doesn't have it!"
+        print "%s, doesn't know that trick" % rover.name
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="output_wrapper">
+
+.. raw:: html
+
+   <div class="output">
+
+.. raw:: html
+
+   <div class="output_area">
+
+.. raw:: html
+
+   <div class="prompt">
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="output_subarea output_stream output_stdout output_text">
+
+::
+
+    Rover, doesn't know that trick
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="cell border-box-sizing text_cell rendered">
+
+.. raw:: html
+
+   <div class="prompt input_prompt">
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="inner_cell">
+
+.. raw:: html
+
+   <div class="text_cell_render border-box-sizing rendered_html">
+
+And that's it.
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
 
 Installation
 ------------

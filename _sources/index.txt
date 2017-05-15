@@ -5,8 +5,6 @@
 
 .. include:: README.rst
 
-.. include:: test.rst
-
 Indices and tables
 ==================
 
