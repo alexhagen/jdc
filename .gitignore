@@ -5,6 +5,10 @@ test_jdc.rst
 test_jdc.html
 EXAMPLE.html
 EXAMPLE.md
+test.rst
+modules.rst
+jdc.rst
+jdc.jdc.rst
 
 # Mac Files
 .DS_Store

@@ -123,12 +123,14 @@ In \[2\]:
 
 <div class="highlight hl-ipython2">
 
-    class func(object):
-        def __init__(self, A):
-            self.A = A
+    class dog(object):
+        def __init__(self, name, noise):
+            self.name = name
+            self.noise = noise
             
-    one = func(1.0)
-    two = func(2.0)
+            
+    rover = dog('Rover', 'bark')
+    spot = dog('Spot', 'woof')
 
 </div>
 
@@ -150,7 +152,7 @@ In \[2\]:
 
 <div class="text_cell_render border-box-sizing rendered_html">
 
-Then, we want to add afunction to that class:
+Then, we want to add a function to that class:
 
 </div>
 
@@ -174,9 +176,10 @@ In \[3\]:
 
 <div class="highlight hl-ipython2">
 
-    %%add_to func
-    def y(self, x):
-        print self.A * x**2
+    %%add_to dog
+    def bark(self, times=1):
+        saying = ('%s ' % self.noise) * times
+        print "%s says: %s" % (self.name, saying)
 
 </div>
 
@@ -222,8 +225,8 @@ In \[4\]:
 
 <div class="highlight hl-ipython2">
 
-    one.y(5.0)
-    two.y(10.0)
+    rover.bark(1)
+    spot.bark(2)
 
 </div>
 
@@ -245,8 +248,8 @@ In \[4\]:
 
 <div class="output_subarea output_stream output_stdout output_text">
 
-    25.0
-    200.0
+    Rover says: bark 
+    Spot says: woof woof 
 
 </div>
 
@@ -293,9 +296,9 @@ In \[5\]:
 
 <div class="highlight hl-ipython2">
 
-    %%add_to two
-    def z(self, x):
-        print self.A * x**3
+    %%add_to spot
+    def sit(self):
+        print '%s is now sitting' % self.name
 
 </div>
 
@@ -323,7 +326,7 @@ In \[6\]:
 
 <div class="highlight hl-ipython2">
 
-    two.z(5.0)
+    spot.sit()
 
 </div>
 
@@ -345,7 +348,7 @@ In \[6\]:
 
 <div class="output_subarea output_stream output_stdout output_text">
 
-    250.0
+    Spot is now sitting
 
 </div>
 
@@ -393,9 +396,9 @@ In \[7\]:
 <div class="highlight hl-ipython2">
 
     try: 
-        one.z(5.0)
+        rover.sit()
     except AttributeError:
-        print "See, it doesn't have it!"
+        print "%s, doesn't know that trick" % rover.name
 
 </div>
 
@@ -417,7 +420,7 @@ In \[7\]:
 
 <div class="output_subarea output_stream output_stdout output_text">
 
-    See, it doesn't have it!
+    Rover, doesn't know that trick
 
 </div>
 
