@@ -1,0 +1,68 @@
+
+.. code:: python
+
+    import jdc.jdc as jdc
+
+.. code:: python
+
+    class func(object):
+        def __init__(self, A):
+            self.A = A
+            
+    one = func(1.0)
+    two = func(2.0)
+
+.. code:: python
+
+    %%add_to func
+    def y(self, x):
+        print self.A * x**2
+
+.. code:: python
+
+    one.y(5.0)
+
+
+.. parsed-literal::
+
+    25.0
+
+
+.. code:: python
+
+    %%add_to two
+    def z(self, x):
+        print self.A * x**3
+
+.. code:: python
+
+    two.y(5.0)
+
+
+.. parsed-literal::
+
+    50.0
+
+
+.. code:: python
+
+    two.z(5.0)
+
+
+.. parsed-literal::
+
+    250.0
+
+
+.. code:: python
+
+    try: 
+        one.z(5.0)
+    except AttributeError:
+        print "See, it doesn't have it!"
+
+
+.. parsed-literal::
+
+    See, it doesn't have it!
+
