@@ -8,6 +8,12 @@ class jdc_magics(Magics):
 
     @line_cell_magic
     def add_to(self, line, cell):
+        """ adds a method to a class or object
+
+            :param line: the method or class to add to
+            :param cell: a python string defining class method that will be
+                added to the class or object
+        """
         lcls = ip.user_module.__dict__
         if line in lcls.keys():
             if inspect.isclass(lcls[line]):
