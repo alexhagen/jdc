@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Welcome to jdc’s documentation! &mdash; jdc a documentation</title>
+    <title>jdc - Jupyter Dynamic Classes &mdash; jdc a documentation</title>
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -82,7 +82,10 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Welcome to jdc&#8217;s documentation!</a></li>
+<li><a class="reference internal" href="#">jdc - Jupyter Dynamic Classes</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 </ul>
@@ -117,12 +120,131 @@
   <div class="row">
     <div class="col-md-12 content">
       
-  <div class="section" id="welcome-to-jdc-s-documentation">
-<h1>Welcome to jdc&#8217;s documentation!<a class="headerlink" href="#welcome-to-jdc-s-documentation" title="Permalink to this headline">¶</a></h1>
-<p>Contents:</p>
-<div class="toctree-wrapper compound">
-<ul class="simple">
-</ul>
+  <div class="section" id="jdc-jupyter-dynamic-classes">
+<h1>jdc - Jupyter Dynamic Classes<a class="headerlink" href="#jdc-jupyter-dynamic-classes" title="Permalink to this headline">¶</a></h1>
+<p><em>Alex Hagen</em></p>
+<p><code class="docutils literal"><span class="pre">jdc</span></code> is a Jupyter magic made to solve a very specific problem: that
+sometimes you want to define classes dynamically in Jupyter notebooks,
+and you want it to look good. On <a class="reference external" href="https://github.com/jupyter/notebook/issues/1243">Jupyter&#8217;s
+Github</a> there&#8217;s a
+lengthy discussion and wider view of this issue, but I&#8217;ve implemented a
+quickfix which I think ended up looking pretty semantic. Thanks to <a class="reference external" href="http://igorsobreira.com/2011/02/06/adding-methods-dynamically-in-python.html">Igor
+Sobreira</a>
+for the underlying IPython.</p>
+<p>The example below will be most informative, but basically all <code class="docutils literal"><span class="pre">jdc</span></code>
+allows you to do is to add a cell and define</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">%%</span><span class="n">add_to</span> <span class="n">our_class</span>
+<span class="k">def</span> <span class="nf">our_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">our_variable</span><span class="p">):</span>
+  <span class="k">print</span> <span class="n">our_variable</span>
+</pre></div>
+</div>
+<p>and that will add the method <code class="docutils literal"><span class="pre">our_function</span></code> to <code class="docutils literal"><span class="pre">our_class</span></code>, whether
+<code class="docutils literal"><span class="pre">our_class</span></code> is a class, or an object with a class type.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">jdc.jdc</span> <span class="kn">as</span> <span class="nn">jdc</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">func</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">=</span> <span class="n">A</span>
+
+<span class="n">one</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">two</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">%%</span><span class="n">add_to</span> <span class="n">func</span>
+<span class="k">def</span> <span class="nf">y</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="k">print</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">one</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">%%</span><span class="n">add_to</span> <span class="n">two</span>
+<span class="k">def</span> <span class="nf">z</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="k">print</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">two</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">two</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">try</span><span class="p">:</span>
+    <span class="n">one</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s2">&quot;See, it doesn&#39;t have it!&quot;</span>
+</pre></div>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Right now, installation is pretty manual, but I&#8217;ll be working on this.
+The easiest way to install would be to make your own utilities directory</p>
+<div class="highlight-bash"><div class="highlight"><pre>mkdir ~/util
+<span class="nb">cd</span> ~/util
+</pre></div>
+</div>
+<p>and clone the repo into it</p>
+<div class="highlight-bash"><div class="highlight"><pre>git clone https://github.com/alexhagen/jdc
+</pre></div>
+</div>
+<p>and then add that directory into your <code class="docutils literal"><span class="pre">PYTHONPATH</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre>sudo <span class="nb">echo</span> <span class="s2">&quot;export PYTHONPATH=</span><span class="si">${</span><span class="nv">PYTHONPATH</span><span class="si">}</span><span class="s2">:~/util&quot;</span> &gt;&gt; ~/.bashrc
+</pre></div>
+</div>
+<p>Then you can</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">jdc.jdc</span> <span class="kn">as</span> <span class="nn">jdc</span>
+</pre></div>
+</div>
+<p>in any Jupyter notebook.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">jdc.jdc</span> <span class="kn">as</span> <span class="nn">jdc</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">func</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">=</span> <span class="n">A</span>
+
+<span class="n">one</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">two</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">%%</span><span class="n">add_to</span> <span class="n">func</span>
+<span class="k">def</span> <span class="nf">y</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="k">print</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">one</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="mf">25.0</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">%%</span><span class="n">add_to</span> <span class="n">two</span>
+<span class="k">def</span> <span class="nf">z</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="k">print</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">two</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="mf">50.0</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">two</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="mf">250.0</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">try</span><span class="p">:</span>
+    <span class="n">one</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s2">&quot;See, it doesn&#39;t have it!&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>See, it doesn&#39;t have it!
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="indices-and-tables">
@@ -132,6 +254,11 @@
 <li><a class="reference internal" href="py-modindex.html"><span>Module Index</span></a></li>
 <li><a class="reference internal" href="search.html"><span>Search Page</span></a></li>
 </ul>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
 </div>
 
 
