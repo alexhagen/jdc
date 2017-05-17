@@ -4,7 +4,7 @@
 {# Custom CSS overrides #}
 {% set bootswatch_css_custom = ['_static/bootstrap.css'] %}
 
-{% block footer %}
+{% block header %}
   {{ super() }}
   <style>
   div.input_prompt {color: #9b703f;}
@@ -29,6 +29,9 @@
     margin-left: 11ex;
     display:inline-block;
     float: right;
+  }
+  span.navbar-version {
+    margin-top: 18px;
   }
   </style>
 {% endblock %}
