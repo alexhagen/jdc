@@ -1,0 +1,18 @@
+.. jdc documentation master file, created by
+   sphinx-quickstart on Mon May 15 11:52:04 2017.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+.. include:: README.rst
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
+Contents:
+
+.. toctree::
+   :maxdepth: 2

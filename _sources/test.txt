@@ -1,0 +1,80 @@
+
+Example
+-------
+
+Below is an example on how to use ``jdc``. First we have to import the
+class:
+
+.. code:: python
+
+    import jdc.jdc as jdc
+
+Then, we have to make a dummy class:
+
+.. code:: python
+
+    class func(object):
+        def __init__(self, A):
+            self.A = A
+            
+    one = func(1.0)
+    two = func(2.0)
+
+Then, we want to add afunction to that class:
+
+.. code:: python
+
+    %%add_to func
+    def y(self, x):
+        print self.A * x**2
+
+And now we can access that function from any method of that class.
+
+.. code:: python
+
+    one.y(5.0)
+    two.y(10.0)
+
+
+.. parsed-literal::
+
+    25.0
+    200.0
+
+
+If we want to add a function to only one object of that class, we can do
+that, as well:
+
+.. code:: python
+
+    %%add_to two
+    def z(self, x):
+        print self.A * x**3
+
+.. code:: python
+
+    two.z(5.0)
+
+
+.. parsed-literal::
+
+    250.0
+
+
+Note that the function added to a class object is only available to that
+object, not all objects of that class:
+
+.. code:: python
+
+    try: 
+        one.z(5.0)
+    except AttributeError:
+        print "See, it doesn't have it!"
+
+
+.. parsed-literal::
+
+    See, it doesn't have it!
+
+
+And that's it.
