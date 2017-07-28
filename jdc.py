@@ -21,16 +21,17 @@ class jdc_magics(Magics):
             else:
                 isclass = False
                 objecttype = eval('type(%s).__name__' % line, lcls)
-
-        funcname = cell.split('(')[0]
-        funcname = funcname.replace("def ", "")
-        run_str = "%s\n" % cell
-        run_str += "\n\n"
-        if isclass:
-            run_str += "%s.%s = %s\n" % (line, funcname, funcname)
-        else:
-            run_str += 'from types import MethodType\n'
-            run_str += "%s.%s = MethodType(%s, %s)\n" % (line, funcname, funcname, line)
-        exec(run_str, lcls)
+        for string in cell.split('def')[1:]:
+            string = 'def' + string
+            funcname = string.split('(')[0]
+            funcname = funcname.replace("def ", "")
+            run_str = "%s\n" % string
+            run_str += "\n\n"
+            if isclass:
+                run_str += "%s.%s = %s\n" % (line, funcname, funcname)
+            else:
+                run_str += 'from types import MethodType\n'
+                run_str += "%s.%s = MethodType(%s, %s)\n" % (line, funcname, funcname, line)
+            exec(run_str, lcls)
 
 ip.register_magics(jdc_magics)
