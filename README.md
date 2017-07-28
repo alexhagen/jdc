@@ -398,7 +398,7 @@ In \[7\]:
     try: 
         rover.sit()
     except AttributeError:
-        print "%s, doesn't know that trick" % rover.name
+        print "%s doesn't know that trick" % rover.name
 
 </div>
 
@@ -420,7 +420,7 @@ In \[7\]:
 
 <div class="output_subarea output_stream output_stdout output_text">
 
-    Rover, doesn't know that trick
+    Rover doesn't know that trick
 
 </div>
 
@@ -442,7 +442,143 @@ In \[7\]:
 
 <div class="text_cell_render border-box-sizing rendered_html">
 
-And that's it.
+And if we're writing a lot of code, we can now do that in a single cell.
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="input">
+
+<div class="prompt input_prompt">
+
+In \[8\]:
+
+</div>
+
+<div class="inner_cell">
+
+<div class="input_area">
+
+<div class="highlight hl-ipython2">
+
+    %%add_to spot
+    def rollover(self):
+        print "%s is now sitting" % self.name
+        
+    def highfive(self):
+        print "%s is trying to high five you" % self.name
+        
+    def domytaxes(self):
+        print "%s is just showing off now" % self.name
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="input">
+
+<div class="prompt input_prompt">
+
+In \[9\]:
+
+</div>
+
+<div class="inner_cell">
+
+<div class="input_area">
+
+<div class="highlight hl-ipython2">
+
+    spot.rollover()
+    spot.highfive()
+    spot.domytaxes()
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="output_wrapper">
+
+<div class="output">
+
+<div class="output_area">
+
+<div class="prompt">
+
+</div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+
+    Spot is now sitting
+    Spot is trying to high five you
+    Spot is just showing off now
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+
+<div class="prompt input_prompt">
+
+</div>
+
+<div class="inner_cell">
+
+<div class="text_cell_render border-box-sizing rendered_html">
+
+and that's it.
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="input">
+
+<div class="prompt input_prompt">
+
+In \[10\]:
+
+</div>
+
+<div class="inner_cell">
+
+<div class="input_area">
+
+<div class="highlight hl-ipython2">
+
+     
+
+</div>
+
+</div>
 
 </div>
 
