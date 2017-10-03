@@ -169,7 +169,7 @@ allows you to do is to add a cell and define</p>
 </div></div></div><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt"></div><div class="inner_cell"><div class="text_cell_render border-box-sizing rendered_html"><p>Below is an example on how to use <code class="docutils literal"><span class="pre">jdc</span></code>. First we have to import the
 class:</p>
 </div></div></div><div class="cell border-box-sizing code_cell rendered"><div class="input"><div class="prompt input_prompt"><p>In&nbsp;[1]:</p>
-</div><div class="inner_cell"><div class="input_area"><div class="highlight hl-ipython2"><div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jdc.jdc</span> <span class="k">as</span> <span class="nn">jdc</span>
+</div><div class="inner_cell"><div class="input_area"><div class="highlight hl-ipython2"><div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jdc</span>
 </pre></div>
 </div>
 </div></div></div></div></div><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt"></div><div class="inner_cell"><div class="text_cell_render border-box-sizing rendered_html"><p>Then, we have to make a dummy class:</p>
@@ -233,7 +233,7 @@ object, not all objects of that class:</p>
 </div></div></div><div class="cell border-box-sizing code_cell rendered"><div class="input"><div class="prompt input_prompt"><p>In&nbsp;[8]:</p>
 </div><div class="inner_cell"><div class="input_area"><div class="highlight hl-ipython2"><div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">add_to</span> <span class="n">spot</span>
 <span class="k">def</span> <span class="nf">rollover</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> is now sitting&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+    <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> rolled over&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
 
 <span class="k">def</span> <span class="nf">highfive</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> is trying to high five you&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
@@ -248,14 +248,13 @@ object, not all objects of that class:</p>
 <span class="n">spot</span><span class="o">.</span><span class="n">domytaxes</span><span class="p">()</span>
 </pre></div>
 </div>
-</div></div></div></div><div class="output_wrapper"><div class="output"><div class="output_area"><div class="prompt"></div><div class="output_subarea output_stream output_stdout output_text"><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Spot</span> <span class="ow">is</span> <span class="n">now</span> <span class="n">sitting</span>
+</div></div></div></div><div class="output_wrapper"><div class="output"><div class="output_area"><div class="prompt"></div><div class="output_subarea output_stream output_stdout output_text"><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Spot</span> <span class="n">rolled</span> <span class="n">over</span>
 <span class="n">Spot</span> <span class="ow">is</span> <span class="n">trying</span> <span class="n">to</span> <span class="n">high</span> <span class="n">five</span> <span class="n">you</span>
 <span class="n">Spot</span> <span class="ow">is</span> <span class="n">just</span> <span class="n">showing</span> <span class="n">off</span> <span class="n">now</span>
 </pre></div>
 </div>
 </div></div></div></div></div><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt"></div><div class="inner_cell"><div class="text_cell_render border-box-sizing rendered_html"><p>and that’s it.</p>
-</div></div></div><div class="cell border-box-sizing code_cell rendered"><div class="input"><div class="prompt input_prompt"><p>In&nbsp;[10]:</p>
-</div><div class="inner_cell"><div class="input_area"><div class="highlight hl-ipython2"></div></div></div></div></div><div class="section" id="installation">
+</div></div></div><div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>Right now, installation should now work through PyPI:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>pip install jdc
