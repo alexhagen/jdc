@@ -77,7 +77,7 @@ In \[1\]:
 
 <div class="highlight hl-ipython2">
 
-    import jdc.jdc as jdc
+    import jdc
 
 </div>
 
@@ -468,7 +468,7 @@ In \[8\]:
 
     %%add_to spot
     def rollover(self):
-        print "%s is now sitting" % self.name
+        print "%s rolled over" % self.name
         
     def highfive(self):
         print "%s is trying to high five you" % self.name
@@ -526,7 +526,7 @@ In \[9\]:
 
 <div class="output_subarea output_stream output_stdout output_text">
 
-    Spot is now sitting
+    Spot rolled over
     Spot is trying to high five you
     Spot is just showing off now
 
@@ -551,34 +551,6 @@ In \[9\]:
 <div class="text_cell_render border-box-sizing rendered_html">
 
 and that's it.
-
-</div>
-
-</div>
-
-</div>
-
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="input">
-
-<div class="prompt input_prompt">
-
-In \[10\]:
-
-</div>
-
-<div class="inner_cell">
-
-<div class="input_area">
-
-<div class="highlight hl-ipython2">
-
-     
-
-</div>
-
-</div>
 
 </div>
 
