@@ -33,8 +33,8 @@ and that will add the method ``our_function`` to ``our_class``, whether
 
 <div class="text_cell_render border-box-sizing rendered_html">
 
-Example[¶](#Example){.anchor-link} {#Example}
-==================================
+Example[Â¶](#Example){.anchor-link} {#Example}
+===================================
 
 </div>
 
