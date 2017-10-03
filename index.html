@@ -258,25 +258,11 @@ object, not all objects of that class:</p>
 </div></div></div><div class="cell border-box-sizing code_cell rendered"><div class="input"><div class="prompt input_prompt"><p>In&nbsp;[10]:</p>
 </div><div class="inner_cell"><div class="input_area"><div class="highlight hl-ipython2"></div></div></div></div></div><div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>Right now, installation is pretty manual, but I’ll be working on this.
-The easiest way to install would be to make your own utilities directory</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>mkdir ~/util
-<span class="nb">cd</span> ~/util
+<p>Right now, installation should now work through PyPI:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>pip install jdc
 </pre></div>
 </div>
-<p>and clone the repo into it</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/alexhagen/jdc
-</pre></div>
-</div>
-<p>and then add that directory into your <code class="docutils literal"><span class="pre">PYTHONPATH</span></code></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo <span class="nb">echo</span> <span class="s2">&quot;export PYTHONPATH=</span><span class="si">${</span><span class="nv">PYTHONPATH</span><span class="si">}</span><span class="s2">:~/util&quot;</span> &gt;&gt; ~/.bashrc
-</pre></div>
-</div>
-<p>Then you can</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jdc.jdc</span> <span class="kn">as</span> <span class="nn">jdc</span>
-</pre></div>
-</div>
-<p>in any Jupyter notebook.</p>
+<p>Please open up an issue if it doesn’t work, I’ll fix it!</p>
 </div>
 </div>
 <div class="section" id="indices-and-tables">

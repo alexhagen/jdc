@@ -1078,30 +1078,11 @@ In [10]:
 Installation
 ------------
 
-Right now, installation is pretty manual, but I'll be working on this.
-The easiest way to install would be to make your own utilities directory
+Right now, installation should now work through PyPI:
 
 .. code:: bash
 
-    mkdir ~/util
-    cd ~/util
 
-and clone the repo into it
+    pip install jdc
 
-.. code:: bash
-
-    git clone https://github.com/alexhagen/jdc
-
-and then add that directory into your ``PYTHONPATH``
-
-.. code:: bash
-
-    sudo echo "export PYTHONPATH=${PYTHONPATH}:~/util" >> ~/.bashrc
-
-Then you can
-
-.. code:: python
-
-    import jdc.jdc as jdc
-
-in any Jupyter notebook.
+Please open up an issue if it doesn't work, I'll fix it!
