@@ -22,7 +22,7 @@ class jdc_magics(Magics):
                 isclass = False
                 objecttype = eval('type(%s).__name__' % line, lcls)
         for string in cell.split('def ')[1:]:
-            string = 'def' + string
+            string = 'def ' + string
             funcname = string.split('(')[0]
             funcname = funcname.replace("def ", "")
             run_str = "%s\n" % string
