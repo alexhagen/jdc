@@ -190,6 +190,10 @@ class:</p>
 <span class="k">def</span> <span class="nf">bark</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">times</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">saying</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">noise</span><span class="p">)</span> <span class="o">*</span> <span class="n">times</span>
     <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> says: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">saying</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">bark2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">times</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">saying</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">noise</span><span class="p">)</span> <span class="o">*</span> <span class="n">times</span>
+    <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> says: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">saying</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></div></div></div></div><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt"></div><div class="inner_cell"><div class="text_cell_render border-box-sizing rendered_html"><p>And now we can access that function from any method of that class.</p>
@@ -251,6 +255,33 @@ object, not all objects of that class:</p>
 </div></div></div></div><div class="output_wrapper"><div class="output"><div class="output_area"><div class="prompt"></div><div class="output_subarea output_stream output_stdout output_text"><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Spot</span> <span class="n">rolled</span> <span class="n">over</span>
 <span class="n">Spot</span> <span class="ow">is</span> <span class="n">trying</span> <span class="n">to</span> <span class="n">high</span> <span class="n">five</span> <span class="n">you</span>
 <span class="n">Spot</span> <span class="ow">is</span> <span class="n">just</span> <span class="n">showing</span> <span class="n">off</span> <span class="n">now</span>
+</pre></div>
+</div>
+</div></div></div></div></div><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt"></div><div class="inner_cell"><div class="text_cell_render border-box-sizing rendered_html"><p>Nesting functions and decorators should now work. Notice when calling
+the wrapped function that we must call it by <code class="docutils literal"><span class="pre">func(self,</span> <span class="pre">*args)</span></code>
+instead of <code class="docutils literal"><span class="pre">self.func(*args)</span></code> or <code class="docutils literal"><span class="pre">func(*args)</span></code>.</p>
+</div></div></div><div class="cell border-box-sizing code_cell rendered"><div class="input"><div class="prompt input_prompt"><p>In&nbsp;[10]:</p>
+</div><div class="inner_cell"><div class="input_area"><div class="highlight hl-ipython2"><div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">add_to</span> <span class="n">dog</span>
+<span class="k">def</span> <span class="nf">race</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">time</span>
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="nb">print</span> <span class="s2">&quot;A new record time, </span><span class="si">%s</span><span class="s2"> finished in: &quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="nb">str</span><span class="p">((</span><span class="n">t2</span> <span class="o">-</span> <span class="n">t1</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; seconds!</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="nd">@race</span>
+<span class="k">def</span> <span class="nf">race_course</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> finished the course.&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
+</div></div></div></div></div><div class="cell border-box-sizing code_cell rendered"><div class="input"><div class="prompt input_prompt"><p>In&nbsp;[11]:</p>
+</div><div class="inner_cell"><div class="input_area"><div class="highlight hl-ipython2"><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">spot</span><span class="o">.</span><span class="n">race_course</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></div></div></div><div class="output_wrapper"><div class="output"><div class="output_area"><div class="prompt"></div><div class="output_subarea output_stream output_stdout output_text"><div class="highlight-default"><div class="highlight"><pre><span></span>Spot finished the course.
+A new record time, Spot finished in: 0.000334978103638 seconds!
 </pre></div>
 </div>
 </div></div></div></div></div><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt"></div><div class="inner_cell"><div class="text_cell_render border-box-sizing rendered_html"><p>and that’s it.</p>
