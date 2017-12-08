@@ -180,6 +180,10 @@ In \[3\]:
     def bark(self, times=1):
         saying = ('%s ' % self.noise) * times
         print "%s says: %s" % (self.name, saying)
+        
+    def bark2(self, times=1):
+        saying = ('%s ' % self.noise) * times
+        print "%s says: %s" % (self.name, saying)
 
 </div>
 
@@ -529,6 +533,117 @@ In \[9\]:
     Spot rolled over
     Spot is trying to high five you
     Spot is just showing off now
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+
+<div class="prompt input_prompt">
+
+</div>
+
+<div class="inner_cell">
+
+<div class="text_cell_render border-box-sizing rendered_html">
+
+Nesting functions and decorators should now work. Notice when calling
+the wrapped function that we must call it by `func(self, *args)` instead
+of `self.func(*args)` or `func(*args)`.
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="input">
+
+<div class="prompt input_prompt">
+
+In \[10\]:
+
+</div>
+
+<div class="inner_cell">
+
+<div class="input_area">
+
+<div class="highlight hl-ipython2">
+
+    %%add_to dog
+    def race(func):
+        def wrapper(self):
+            import time
+            t1 = time.time()
+            func(self)
+            t2 = time.time()
+            print "A new record time, %s finished in: " % self.name + str((t2 - t1)) + " seconds!\n"
+        return wrapper
+
+    @race
+    def race_course(self):
+        print "%s finished the course." % self.name
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="input">
+
+<div class="prompt input_prompt">
+
+In \[11\]:
+
+</div>
+
+<div class="inner_cell">
+
+<div class="input_area">
+
+<div class="highlight hl-ipython2">
+
+    spot.race_course()
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="output_wrapper">
+
+<div class="output">
+
+<div class="output_area">
+
+<div class="prompt">
+
+</div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+
+    Spot finished the course.
+    A new record time, Spot finished in: 0.000334978103638 seconds!
 
 </div>
 
