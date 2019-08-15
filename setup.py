@@ -13,7 +13,7 @@ from setuptools import find_packages, setup, Command
 
 # Package meta-data.
 NAME = 'jdc'
-DESCRIPTION = 'Dynamic classes for Jupyter/IPython notebooks.'
+DESCRIPTION = 'Dynamic classes for Jupyter notebooks.'
 URL = 'https://github.com/alexhagen/jdc'
 EMAIL = 'alexhagen6@gmail.com'
 AUTHOR = 'Alex Hagen'
