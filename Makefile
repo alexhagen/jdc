@@ -8,6 +8,8 @@ readme: FORCE
 	cat EXAMPLE.md >> README.md; \
 	echo "" >> README.md; \
 	cat INSTALL.md >> README.md
+	echo "" >> README.md; \
+	cat NOTE.md >> README.md
 
 docs: FORCE
 	pandoc README.md -o docs/source/README.rst; \
