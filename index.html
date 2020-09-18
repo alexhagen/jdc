@@ -1,0 +1,592 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jdc - Jupyter Dynamic Classes &#8212; jdc a documentation</title>
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+  
+  <style>
+  div.input_prompt {color: #9b703f;}
+  div.output_prompt {color: #142735;}
+  div.output_area pre {font-weight: normal; color: #142735;}
+  div.output_subarea {font-weight: normal; color: #142735;}
+  div.cell{
+    margin-left:auto;
+    margin-right:auto;
+    }
+    div.input_prompt{
+    width: 10ex;
+    padding-right: 1ex;
+    float: left;
+  }
+  div.input_prompt p {
+    padding-top: 1.2ex;
+    text-align: right;
+    vertical-align: middle;
+    }
+  div.inner-cell {
+    margin-left: 11ex;
+    display:inline-block;
+    float: right;
+  }
+  span.navbar-version {
+    margin-top: 18px;
+  }
+  </style>
+
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+          jdc</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="http://alexhagen.github.io">Alex Hagen</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Alex Hagen <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">jdc - Jupyter Dynamic Classes</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#note">Note</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="jdc-jupyter-dynamic-classes">
+<h1>jdc - Jupyter Dynamic Classes<a class="headerlink" href="#jdc-jupyter-dynamic-classes" title="Permalink to this headline">¶</a></h1>
+<p><em>Alex Hagen</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">jdc</span></code> is a Jupyter magic made to solve a very specific problem: that
+sometimes you want to define classes dynamically in Jupyter notebooks,
+and you want it to look good. On <a class="reference external" href="https://github.com/jupyter/notebook/issues/1243">Jupyter’s
+Github</a> there’s a
+lengthy discussion and wider view of this issue, but I’ve implemented a
+quickfix which I think ended up looking pretty semantic. Thanks to <a class="reference external" href="http://igorsobreira.com/2011/02/06/adding-methods-dynamically-in-python.html">Igor
+Sobreira</a>
+for the underlying IPython.</p>
+<p>The example below will be most informative, but basically all <code class="docutils literal notranslate"><span class="pre">jdc</span></code>
+allows you to do is to add a cell and define</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">add_to</span> <span class="n">our_class</span>
+<span class="k">def</span> <span class="nf">our_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">our_variable</span><span class="p">):</span>
+  <span class="nb">print</span> <span class="n">our_variable</span>
+</pre></div>
+</div>
+<p>and that will add the method <code class="docutils literal notranslate"><span class="pre">our_function</span></code> to <code class="docutils literal notranslate"><span class="pre">our_class</span></code>, whether
+<code class="docutils literal notranslate"><span class="pre">our_class</span></code> is a class, or an object with a class type.</p>
+<div class="jp-cell-inputwrapper docutils container">
+<p>jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput</p>
+<blockquote>
+<div><p class="rubric" id="example">Example<a class="reference external" href="#Example">¶</a></p>
+</div></blockquote>
+</div>
+<div class="jp-cell-inputwrapper docutils container">
+<p>jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput</p>
+<blockquote>
+<div><p>Below is an example on how to use <code class="docutils literal notranslate"><span class="pre">jdc</span></code>. First we have to import
+the class:</p>
+</div></blockquote>
+</div>
+<div class="jp-cell jp-codecell jp-notebook-cell jp-mod-nooutputs docutils container">
+<div class="jp-cell-inputwrapper docutils container">
+<div class="jp-inputarea jp-cell-inputarea docutils container">
+<div class="jp-inputprompt jp-inputarea-prompt docutils container">
+<p>In [1]:</p>
+</div>
+<p>jp-CodeMirrorEditor jp-Editor jp-InputArea-editor</p>
+<blockquote>
+<div><div class="codemirror cm-s-jupyter docutils container">
+<div class="highlight hl-ipython3 docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jdc</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="jp-cell-inputwrapper docutils container">
+<p>jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput</p>
+<blockquote>
+<div><p>Then, we have to make a dummy class:</p>
+</div></blockquote>
+</div>
+<div class="jp-cell jp-codecell jp-notebook-cell jp-mod-nooutputs docutils container">
+<div class="jp-cell-inputwrapper docutils container">
+<div class="jp-inputarea jp-cell-inputarea docutils container">
+<div class="jp-inputprompt jp-inputarea-prompt docutils container">
+<p>In [2]:</p>
+</div>
+<p>jp-CodeMirrorEditor jp-Editor jp-InputArea-editor</p>
+<blockquote>
+<div><div class="codemirror cm-s-jupyter docutils container">
+<div class="highlight hl-ipython3 docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">dog</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">noise</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">noise</span> <span class="o">=</span> <span class="n">noise</span>
+
+
+<span class="n">rover</span> <span class="o">=</span> <span class="n">dog</span><span class="p">(</span><span class="s1">&#39;Rover&#39;</span><span class="p">,</span> <span class="s1">&#39;ruff&#39;</span><span class="p">)</span>
+<span class="n">spot</span> <span class="o">=</span> <span class="n">dog</span><span class="p">(</span><span class="s1">&#39;Spot&#39;</span><span class="p">,</span> <span class="s1">&#39;woof&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="jp-cell-inputwrapper docutils container">
+<p>jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput</p>
+<blockquote>
+<div><p>Then, we want to add a function to that class:</p>
+</div></blockquote>
+</div>
+<div class="jp-cell jp-codecell jp-notebook-cell jp-mod-nooutputs docutils container">
+<div class="jp-cell-inputwrapper docutils container">
+<div class="jp-inputarea jp-cell-inputarea docutils container">
+<div class="jp-inputprompt jp-inputarea-prompt docutils container">
+<p>In [3]:</p>
+</div>
+<p>jp-CodeMirrorEditor jp-Editor jp-InputArea-editor</p>
+<blockquote>
+<div><div class="codemirror cm-s-jupyter docutils container">
+<div class="highlight hl-ipython3 docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">add_to</span> <span class="n">dog</span>
+<span class="k">def</span> <span class="nf">bark</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">times</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">saying</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">noise</span><span class="p">)</span> <span class="o">*</span> <span class="n">times</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> says: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">saying</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">bark2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">times</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">saying</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">noise</span><span class="p">)</span> <span class="o">*</span> <span class="n">times</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> says: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">saying</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="jp-cell-inputwrapper docutils container">
+<p>jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput</p>
+<blockquote>
+<div><p>And now we can access that function from any method of that class.</p>
+</div></blockquote>
+</div>
+<div class="jp-cell jp-codecell jp-notebook-cell docutils container">
+<div class="jp-cell-inputwrapper docutils container">
+<div class="jp-inputarea jp-cell-inputarea docutils container">
+<div class="jp-inputprompt jp-inputarea-prompt docutils container">
+<p>In [4]:</p>
+</div>
+<p>jp-CodeMirrorEditor jp-Editor jp-InputArea-editor</p>
+<blockquote>
+<div><div class="codemirror cm-s-jupyter docutils container">
+<div class="highlight hl-ipython3 docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rover</span><span class="o">.</span><span class="n">bark</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">spot</span><span class="o">.</span><span class="n">bark</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="jp-cell-outputwrapper docutils container">
+<div class="jp-outputarea jp-cell-outputarea docutils container">
+<div class="jp-outputarea-child docutils container">
+<div class="jp-renderedtext jp-outputarea-output docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rover</span> <span class="n">says</span><span class="p">:</span> <span class="n">ruff</span>
+<span class="n">Spot</span> <span class="n">says</span><span class="p">:</span> <span class="n">woof</span> <span class="n">woof</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-cell-inputwrapper docutils container">
+<p>jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput</p>
+<blockquote>
+<div><p>If we want to add a function to only one object of that class, we
+can do that, as well:</p>
+</div></blockquote>
+</div>
+<div class="jp-cell jp-codecell jp-notebook-cell jp-mod-nooutputs docutils container">
+<div class="jp-cell-inputwrapper docutils container">
+<div class="jp-inputarea jp-cell-inputarea docutils container">
+<div class="jp-inputprompt jp-inputarea-prompt docutils container">
+<p>In [5]:</p>
+</div>
+<p>jp-CodeMirrorEditor jp-Editor jp-InputArea-editor</p>
+<blockquote>
+<div><div class="codemirror cm-s-jupyter docutils container">
+<div class="highlight hl-ipython3 docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">add_to</span> <span class="n">spot</span>
+<span class="k">def</span> <span class="nf">sit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> is now sitting&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="jp-cell jp-codecell jp-notebook-cell docutils container">
+<div class="jp-cell-inputwrapper docutils container">
+<div class="jp-inputarea jp-cell-inputarea docutils container">
+<div class="jp-inputprompt jp-inputarea-prompt docutils container">
+<p>In [6]:</p>
+</div>
+<p>jp-CodeMirrorEditor jp-Editor jp-InputArea-editor</p>
+<blockquote>
+<div><div class="codemirror cm-s-jupyter docutils container">
+<div class="highlight hl-ipython3 docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spot</span><span class="o">.</span><span class="n">sit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="jp-cell-outputwrapper docutils container">
+<div class="jp-outputarea jp-cell-outputarea docutils container">
+<div class="jp-outputarea-child docutils container">
+<div class="jp-renderedtext jp-outputarea-output docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Spot</span> <span class="ow">is</span> <span class="n">now</span> <span class="n">sitting</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-cell-inputwrapper docutils container">
+<p>jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput</p>
+<blockquote>
+<div><p>Note that the function added to a class object is only available
+to that object, not all objects of that class:</p>
+</div></blockquote>
+</div>
+<div class="jp-cell jp-codecell jp-notebook-cell docutils container">
+<div class="jp-cell-inputwrapper docutils container">
+<div class="jp-inputarea jp-cell-inputarea docutils container">
+<div class="jp-inputprompt jp-inputarea-prompt docutils container">
+<p>In [7]:</p>
+</div>
+<p>jp-CodeMirrorEditor jp-Editor jp-InputArea-editor</p>
+<blockquote>
+<div><div class="codemirror cm-s-jupyter docutils container">
+<div class="highlight hl-ipython3 docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">rover</span><span class="o">.</span><span class="n">sit</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> doesn&#39;t know that trick&quot;</span> <span class="o">%</span> <span class="n">rover</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="jp-cell-outputwrapper docutils container">
+<div class="jp-outputarea jp-cell-outputarea docutils container">
+<div class="jp-outputarea-child docutils container">
+<div class="jp-renderedtext jp-outputarea-output docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rover</span> <span class="n">doesn</span><span class="s1">&#39;t know that trick</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-cell-inputwrapper docutils container">
+<p>jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput</p>
+<blockquote>
+<div><p>And if we’re writing a lot of code, we can now do that in a single
+cell.</p>
+</div></blockquote>
+</div>
+<div class="jp-cell jp-codecell jp-notebook-cell jp-mod-nooutputs docutils container">
+<div class="jp-cell-inputwrapper docutils container">
+<div class="jp-inputarea jp-cell-inputarea docutils container">
+<div class="jp-inputprompt jp-inputarea-prompt docutils container">
+<p>In [8]:</p>
+</div>
+<p>jp-CodeMirrorEditor jp-Editor jp-InputArea-editor</p>
+<blockquote>
+<div><div class="codemirror cm-s-jupyter docutils container">
+<div class="highlight hl-ipython3 docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">add_to</span> <span class="n">spot</span>
+<span class="k">def</span> <span class="nf">rollover</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> rolled over&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">highfive</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> is trying to high five you&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">domytaxes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> is just showing off now&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="jp-cell jp-codecell jp-notebook-cell docutils container">
+<div class="jp-cell-inputwrapper docutils container">
+<div class="jp-inputarea jp-cell-inputarea docutils container">
+<div class="jp-inputprompt jp-inputarea-prompt docutils container">
+<p>In [9]:</p>
+</div>
+<p>jp-CodeMirrorEditor jp-Editor jp-InputArea-editor</p>
+<blockquote>
+<div><div class="codemirror cm-s-jupyter docutils container">
+<div class="highlight hl-ipython3 docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spot</span><span class="o">.</span><span class="n">rollover</span><span class="p">()</span>
+<span class="n">spot</span><span class="o">.</span><span class="n">highfive</span><span class="p">()</span>
+<span class="n">spot</span><span class="o">.</span><span class="n">domytaxes</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="jp-cell-outputwrapper docutils container">
+<div class="jp-outputarea jp-cell-outputarea docutils container">
+<div class="jp-outputarea-child docutils container">
+<div class="jp-renderedtext jp-outputarea-output docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Spot</span> <span class="n">rolled</span> <span class="n">over</span>
+<span class="n">Spot</span> <span class="ow">is</span> <span class="n">trying</span> <span class="n">to</span> <span class="n">high</span> <span class="n">five</span> <span class="n">you</span>
+<span class="n">Spot</span> <span class="ow">is</span> <span class="n">just</span> <span class="n">showing</span> <span class="n">off</span> <span class="n">now</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-cell-inputwrapper docutils container">
+<p>jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput</p>
+<blockquote>
+<div><p>Nesting functions and decorators should now work. Notice when
+calling the wrapped function that we must call it by
+<code class="docutils literal notranslate"><span class="pre">func(self,</span> <span class="pre">*args)</span></code> instead of <code class="docutils literal notranslate"><span class="pre">self.func(*args)</span></code> or
+<code class="docutils literal notranslate"><span class="pre">func(*args)</span></code>.</p>
+</div></blockquote>
+</div>
+<div class="jp-cell jp-codecell jp-notebook-cell jp-mod-nooutputs docutils container">
+<div class="jp-cell-inputwrapper docutils container">
+<div class="jp-inputarea jp-cell-inputarea docutils container">
+<div class="jp-inputprompt jp-inputarea-prompt docutils container">
+<p>In [10]:</p>
+</div>
+<p>jp-CodeMirrorEditor jp-Editor jp-InputArea-editor</p>
+<blockquote>
+<div><div class="codemirror cm-s-jupyter docutils container">
+<div class="highlight hl-ipython3 docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">add_to</span> <span class="n">dog</span>
+<span class="k">def</span> <span class="nf">race</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">time</span>
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A new record time, </span><span class="si">%s</span><span class="s2"> finished in: &quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="nb">str</span><span class="p">((</span><span class="n">t2</span> <span class="o">-</span> <span class="n">t1</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; seconds!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="nd">@race</span>
+<span class="k">def</span> <span class="nf">race_course</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> finished the course.&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="jp-cell jp-codecell jp-notebook-cell docutils container">
+<div class="jp-cell-inputwrapper docutils container">
+<div class="jp-inputarea jp-cell-inputarea docutils container">
+<div class="jp-inputprompt jp-inputarea-prompt docutils container">
+<p>In [11]:</p>
+</div>
+<p>jp-CodeMirrorEditor jp-Editor jp-InputArea-editor</p>
+<blockquote>
+<div><div class="codemirror cm-s-jupyter docutils container">
+<div class="highlight hl-ipython3 docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spot</span><span class="o">.</span><span class="n">race_course</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="jp-cell-outputwrapper docutils container">
+<div class="jp-outputarea jp-cell-outputarea docutils container">
+<div class="jp-outputarea-child docutils container">
+<div class="jp-renderedtext jp-outputarea-output docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Spot finished the course.
+A new record time, Spot finished in: 5.984306335449219e-05 seconds!
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-cell-inputwrapper docutils container">
+<p>jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput</p>
+<blockquote>
+<div><p>and that’s it.</p>
+</div></blockquote>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Right now, installation should now work through PyPI:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install jdc
+</pre></div>
+</div>
+<p>Please open up an issue if it doesn’t work, I’ll fix it!</p>
+</div>
+<div class="section" id="note">
+<h2>Note<a class="headerlink" href="#note" title="Permalink to this headline">¶</a></h2>
+<p>&#64;dsblank has pointed this out on the Jupyter discussion:</p>
+<blockquote>
+<div><p>you can do this in regular Python, without resorting to any extra
+magic:</p>
+<p>Cell 1:</p>
+<p>class MyClass(): def method1(self): print(“method1”) Cell 2:</p>
+<p>class MyClass(MyClass): def method2(self): print(“method2”) Cell 3:</p>
+<p>instance = MyClass() instance.method1() instance.method2() That is,
+you can define a class recursively, cell by cell. I don’t think the
+final class is any different from one defined all in one cell. So you
+don’t need an extra package to “solve” this problem.</p>
+</div></blockquote>
+<p>I personally like the semantics of <code class="docutils literal notranslate"><span class="pre">jdc</span></code>, so I won’t be removing it
+from PyPI, but it’s always good to know alternatives, thanks &#64;dsblank!</p>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2017, Alex Hagen.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.2.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
